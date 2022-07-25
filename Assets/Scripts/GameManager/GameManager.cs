@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
         stateMachine.RegisterStates(GameStates.LOSE, new StateBase());
         stateMachine.RegisterStates(GameStates.GAMEPLAY, new StateBase());
 
-        stateMachine.SwitchState(GameStates.INTRO);
+        stateMachine.SwitchState(GameStates.INTRO); 
     }
 
     public void InitGame()

@@ -31,8 +31,22 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 vSpeed = jumpSpeed;
+                StartCoroutine(VFX_JUMP());
+                
             }
+            Debug.Log("chao");
 
+            
+
+            
+
+        }
+
+        IEnumerator VFX_JUMP()
+        {
+            animator.SetBool("Jump", true);
+            yield return new WaitForSeconds(.5f);
+            animator.SetBool("Jump", false);
         }
 
         vSpeed -= gravity * Time.deltaTime;
@@ -60,4 +74,6 @@ public class Player : MonoBehaviour
         
 
     }
+
+
 }
