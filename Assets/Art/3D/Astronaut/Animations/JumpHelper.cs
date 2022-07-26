@@ -8,7 +8,7 @@ public class JumpHelper : MonoBehaviour
 
     public void Jump()
     {
-        player.JumpPlayer();
+       
         
 
     }

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public CharacterController characterController;
     public float speed =1f;
     public float turnSpeed = 1f;
+    public bool canMove = false;
 
     [Header("Gravity")]
     public float gravity = 9.8f;
@@ -20,7 +21,10 @@ public class Player : MonoBehaviour
     public float speedRun = 1.5f;
     void Update()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
+        if(canMove)
+        {
+            transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
+        }
 
         var inputAxisVertical = Input.GetAxis("Vertical");
         var speedVector = transform.forward * inputAxisVertical * speed;
@@ -28,17 +32,12 @@ public class Player : MonoBehaviour
         if (characterController.isGrounded)
         {
             vSpeed = 0;
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && canMove)
             {
                 vSpeed = jumpSpeed;
                 StartCoroutine(VFX_JUMP());
                 
-            }
-            Debug.Log("chao");
-
-            
-
-            
+            }    
 
         }
 
@@ -50,16 +49,19 @@ public class Player : MonoBehaviour
         }
 
         vSpeed -= gravity * Time.deltaTime;
-        speedVector.y = vSpeed;
+        if (canMove)
+        {
+            speedVector.y = vSpeed;
+            characterController.Move(speedVector * Time.deltaTime);
 
-        characterController.Move(speedVector * Time.deltaTime);
+        }
 
 
         var isWalking = inputAxisVertical != 0;
 
-        if (isWalking)
+        if (isWalking  && canMove)
         {
-            if (Input.GetKey(keyRun))
+            if (Input.GetKey(keyRun) && canMove)
             {
                 speedVector *= speedRun;
                 animator.speed = speedRun;
@@ -70,10 +72,11 @@ public class Player : MonoBehaviour
             }
         }
 
-        animator.SetBool("Run", isWalking);
+        animator.SetBool("Run", isWalking&&canMove);
         
 
     }
 
+    
 
 }

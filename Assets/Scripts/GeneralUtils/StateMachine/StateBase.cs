@@ -7,7 +7,7 @@ namespace Pedro.StateMachine
 {
     public class StateBase
     {
-        public virtual void OnStateEnter(object o = null)
+        public virtual void OnStateEnter()
         {
             Debug.Log("OnStateEnter");
         }
