@@ -99,9 +99,10 @@ MonoBehaviour:
   positionToShoot: {fileID: 6219340456299768180}
   timeBetweenShot: 0.3
   speed: 50
+  uIGunUpdaters: []
   maxShoot: 5
   timeToRecharge: 1
-  amountPerShoot: 4
+  amountPerShoot: 2
   angle: 15
 --- !u!1 &6219340457466745699
 GameObject:
