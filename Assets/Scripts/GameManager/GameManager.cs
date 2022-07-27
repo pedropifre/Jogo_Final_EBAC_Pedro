@@ -37,9 +37,8 @@ public class GameManager : Singleton<GameManager>
         stateMachine.SwitchState(GameStates.INTRO); 
     }
 
-    public void InitGame(bool canRun)
+    public void InitGame()
     {
-        player.canMove = canRun;
         stateMachine.SwitchState(GameStates.GAMEPLAY);
     }
 }

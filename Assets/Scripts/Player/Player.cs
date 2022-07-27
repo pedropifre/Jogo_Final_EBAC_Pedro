@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public CharacterController characterController;
     public float speed =1f;
     public float turnSpeed = 1f;
-    public bool canMove = false;
 
     [Header("Gravity")]
     public float gravity = 9.8f;
@@ -21,10 +20,9 @@ public class Player : MonoBehaviour
     public float speedRun = 1.5f;
     void Update()
     {
-        if(canMove)
-        {
-            transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
-        }
+        
+        transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
+        
 
         var inputAxisVertical = Input.GetAxis("Vertical");
         var speedVector = transform.forward * inputAxisVertical * speed;
@@ -32,7 +30,7 @@ public class Player : MonoBehaviour
         if (characterController.isGrounded)
         {
             vSpeed = 0;
-            if (Input.GetKey(KeyCode.Space) && canMove)
+            if (Input.GetKey(KeyCode.Space))
             {
                 vSpeed = jumpSpeed;
                 StartCoroutine(VFX_JUMP());
@@ -49,19 +47,18 @@ public class Player : MonoBehaviour
         }
 
         vSpeed -= gravity * Time.deltaTime;
-        if (canMove)
-        {
-            speedVector.y = vSpeed;
-            characterController.Move(speedVector * Time.deltaTime);
+        
+        speedVector.y = vSpeed;
+        characterController.Move(speedVector * Time.deltaTime);
 
-        }
+        
 
 
         var isWalking = inputAxisVertical != 0;
 
-        if (isWalking  && canMove)
+        if (isWalking )
         {
-            if (Input.GetKey(keyRun) && canMove)
+            if (Input.GetKey(keyRun))
             {
                 speedVector *= speedRun;
                 animator.speed = speedRun;
@@ -72,7 +69,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        animator.SetBool("Run", isWalking&&canMove);
+        animator.SetBool("Run", isWalking);
         
 
     }
