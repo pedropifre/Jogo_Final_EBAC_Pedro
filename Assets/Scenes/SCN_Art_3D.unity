@@ -15144,6 +15144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunbase: {fileID: 2073655803}
+  gunbaseVariant1: {fileID: 7714904699247032089, guid: bfad62dd8ec99914daac3d8d5a85816e, type: 3}
+  gunbaseVariant2: {fileID: 6219340456299768183, guid: 2c4c74df7a75ccc4294606c74c06fd2f, type: 3}
   gunPosition: {fileID: 2073655802}
 --- !u!1001 &2119942588
 PrefabInstance:
