@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5771700198133094264}
   - component: {fileID: 4364419915534412206}
+  - component: {fileID: -5591327483562234445}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -142,3 +143,19 @@ MonoBehaviour:
   timeToDestroy: 2
   speed: 50
   damageAmount: 1
+--- !u!54 &-5591327483562234445
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2240291114220721888}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
