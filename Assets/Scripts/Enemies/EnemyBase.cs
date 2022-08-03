@@ -12,8 +12,11 @@ namespace Enemy
         public FlashColor flashColor;
         public ParticleSystem particleSystem;
         public float StartLife = 10f;
+        public bool lookAtPlayer = false;
+
 
         [SerializeField] private float _currentLife;
+        private Player _player;
 
         [Header("Animation")]
         [SerializeField] private AnimationBase _animationBase;
@@ -26,6 +29,11 @@ namespace Enemy
         private void Awake()
         {
             Init();
+        }
+
+        private void Start()
+        {
+            _player = GameObject.FindObjectOfType<Player>();
         }
 
         protected void ResetLife()
@@ -58,6 +66,8 @@ namespace Enemy
         {
             if (flashColor != null) flashColor.Flash();
             if (particleSystem != null) particleSystem.Emit(15);
+
+            transform.position -= transform.forward;
             _currentLife -= f;
 
             if (_currentLife <= 0)
@@ -79,11 +89,11 @@ namespace Enemy
 
         #endregion
 
-        private void Update()
+        public virtual void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (lookAtPlayer)
             {
-                OnDamage(5);
+                transform.LookAt(_player.transform.position);
             }
         }
 
@@ -91,6 +101,32 @@ namespace Enemy
         {
             Debug.Log("Damage");
             OnDamage(damage);
+        }
+        public void Damage(float damage, Vector3 dir)
+        {
+            Debug.Log("Damage");
+            OnDamage(damage);
+
+            transform.DOMove(transform.position - dir, .1f);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Player p = collision.transform.GetComponent<Player>();
+
+            if (p != null)
+            {
+                p.Damage(1);
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            Player p = other.transform.GetComponent<Player>();
+
+            if (p != null)
+            {
+                p.Damage(1);
+            }
         }
     }
 

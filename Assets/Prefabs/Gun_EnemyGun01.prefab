@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7868431552756658267}
   - component: {fileID: 2429699312800137106}
   m_Layer: 0
-  m_Name: Gun_Original
+  m_Name: Gun_EnemyGun01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5175a47ab59c7f4b87485752ad767ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabProjectile: {fileID: 4364419915534412206, guid: e8e4b60747b00a445aa06c768713c192, type: 3}
+  prefabProjectile: {fileID: 4364419915534412206, guid: 27e76b782c2e12a46bf25ea0c5181a45, type: 3}
   positionToShoot: {fileID: 7868431552756658265}
-  timeBetweenShot: 0.3
+  timeBetweenShot: 2
   speed: 50
