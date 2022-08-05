@@ -23,20 +23,35 @@ namespace Boss
         public float startAnimationDuration = .5f;
         public Ease startAnimationEase = Ease.OutBack;
 
-        [Header("Animation")]
+        [Header("Attack")]
         public int attackAmmount = 5;
         public float timeBetweenAttacks = .5f;
-            
+        public GunBase gunBase;
+
         public float speed = 5f;
         public List<Transform> wayPoints;
+    
 
-        public HealthBase healthBase;
-
+        //public HealthBase healthBase;
         public StateMachine<BossAction> stateMachine;
+
+        //Look at player
+        public bool lookAtPlayer = false;
+        private Player _player;
+
         private void Awake()
         {
             Init();
-            healthBase.OnKill += OnBossKill;
+            //healthBase.OnKill += OnBossKill;
+            _player = GameObject.FindObjectOfType<Player>();
+        }
+
+        private void Update()
+        {
+            if (lookAtPlayer)
+            {
+                transform.LookAt(_player.transform.position);
+            }
         }
         public void Init()
         {
@@ -47,6 +62,11 @@ namespace Boss
             stateMachine.RegisterStates(BossAction.WALK, new BossStateWalk());
             stateMachine.RegisterStates(BossAction.ATTACK, new BossStateAttack());
             stateMachine.RegisterStates(BossAction.DEATH, new BossStateDeath());
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            
         }
 
         #region DEATH
@@ -70,6 +90,7 @@ namespace Boss
             {
                 attacks++;
                 transform.DOScale(1.1f, .1f).SetLoops(2, LoopType.Yoyo);
+                gunBase.Shoot();
                 yield return new WaitForSeconds(timeBetweenAttacks);
             }
             if (endCallBack != null) endCallBack.Invoke();
