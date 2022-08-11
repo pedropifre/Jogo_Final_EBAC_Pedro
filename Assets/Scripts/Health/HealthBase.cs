@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBase : MonoBehaviour
+public class HealthBase : MonoBehaviour, IDamagable
 {
     public float StartLife = 10f;
     public bool destroyOnKill = false;
@@ -10,6 +10,8 @@ public class HealthBase : MonoBehaviour
 
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
+
+    public List<UIFillUpdate> uIGunUpdater;
 
     private void Awake()
     {
@@ -20,8 +22,14 @@ public class HealthBase : MonoBehaviour
         ResetLife();
     }
 
-
-    protected void ResetLife()
+    private void UpdateUi()
+    {
+        if (uIGunUpdater != null)
+        {
+            uIGunUpdater.ForEach(i => i.UpdateValue((float)_currentLife / StartLife));
+        }
+    }
+    public void ResetLife()
     {
         _currentLife = StartLife;
     }
@@ -49,7 +57,12 @@ public class HealthBase : MonoBehaviour
         {
             Kill();
         }
+        UpdateUi();
         OnDamage?.Invoke(this);
     }
 
+    public void Damage(float damage, Vector3 dir)
+    {
+        Damage(damage); 
+    }
 }
