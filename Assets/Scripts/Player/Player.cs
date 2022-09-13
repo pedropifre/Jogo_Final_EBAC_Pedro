@@ -25,6 +25,7 @@ public class Player : MonoBehaviour //IDamagable
 
     [Header("Live")]
     public HealthBase healthBase;
+    public GameObject firstCheckpoint;
     //public UIGunUpdater uIGunUpdater;
 
 
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour //IDamagable
     public void Damage(HealthBase h)
     {
         flashColors.ForEach(i => i.Flash()) ;
+        ShakeCamera.Instance.Shake();
         EffectsManager.Instance.ChangeVignette();
     }
 
@@ -145,6 +147,10 @@ public class Player : MonoBehaviour //IDamagable
         if (CheckPointManager.Instance.hasCheckPoint())
         {
             transform.position = CheckPointManager.Instance.GetPosLastCP();
+        }
+        else
+        {
+            transform.position = firstCheckpoint.transform.position;
         }
     }
 
