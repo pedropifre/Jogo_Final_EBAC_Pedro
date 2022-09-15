@@ -16,14 +16,18 @@ public class ShakeCamera : Singleton<ShakeCamera>
     [NaughtyAttributes.Button]
     public void Shake()
     {
-        ShakeCam(amplitude, frequency, time);
+        ShakeCam(3f, 3f, .5f);
     }
 
     public float shakeTime;
     public void ShakeCam(float amplitiude, float frequency, float time)
     {
-        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitiude;
-        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain= frequency;
+       
+        if (virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>() != null)
+        {
+            virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain= frequency;
+            virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitiude;
+        }
 
         shakeTime = time;
     }
@@ -39,5 +43,6 @@ public class ShakeCamera : Singleton<ShakeCamera>
             virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
             virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0f;
         }
+        
     }
 }

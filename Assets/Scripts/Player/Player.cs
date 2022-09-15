@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GeneralUtils.Core.Singleton;
 
-public class Player : MonoBehaviour //IDamagable
+public class Player : Singleton<Player> //IDamagable
 {
     public List<Collider> colliders;
     public Animator animator;
@@ -36,14 +37,16 @@ public class Player : MonoBehaviour //IDamagable
     {
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
     }
-
-    private void Awake()
+    
+    protected override void Awake()
     {
+        base.Awake();
         OnValidate();
 
         healthBase.OnDamage += Damage;
         healthBase.OnKill += OnKill;
     }
+   
 
     #region LIFE
     private void OnKill(HealthBase h)
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour //IDamagable
     public void Damage(HealthBase h)
     {
         flashColors.ForEach(i => i.Flash()) ;
-        ShakeCamera.Instance.Shake();
+       ShakeCamera.Instance.Shake();
         EffectsManager.Instance.ChangeVignette();
     }
 
