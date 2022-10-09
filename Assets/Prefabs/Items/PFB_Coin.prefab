@@ -48,7 +48,7 @@ MonoBehaviour:
   itemType: 0
   audioSource: {fileID: 0}
   compareTag: Player
-  timeToHide: 3
+  timeToHide: 0
   graphicItem: {fileID: 3352777486677748705}
   ColliderItem: {fileID: 2469692840548345245}
 --- !u!135 &2469692840548345245
