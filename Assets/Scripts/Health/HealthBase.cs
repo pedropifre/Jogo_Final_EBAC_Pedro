@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using Cloth;
 
 public class HealthBase : MonoBehaviour, IDamagable
 {
@@ -12,6 +14,8 @@ public class HealthBase : MonoBehaviour, IDamagable
     public Action<HealthBase> OnKill;
 
     public List<UIFillUpdate> uIGunUpdater;
+
+    public float damageMultiply = 1f;
 
     private void Awake()
     {
@@ -52,7 +56,7 @@ public class HealthBase : MonoBehaviour, IDamagable
     public void Damage(float f)
     {
 
-        _currentLife -= f;
+        _currentLife -= f * damageMultiply;
 
         if (_currentLife <= 0)
         {
@@ -65,5 +69,17 @@ public class HealthBase : MonoBehaviour, IDamagable
     public void Damage(float damage, Vector3 dir)
     {
         Damage(damage); 
+    }
+
+    public void ChangeDamageMultiply(float damageMultiply, float duration)
+    {
+        StartCoroutine(ChangeDamageMultiplyCourotine(damageMultiply, duration));
+    }
+
+    IEnumerator ChangeDamageMultiplyCourotine(float damageMultiply, float duration)
+    {
+        this.damageMultiply = damageMultiply;
+        yield return new WaitForSeconds(duration);
+        this.damageMultiply = 1;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GeneralUtils.Core.Singleton;
+using Cloth;
 
 public class Player : Singleton<Player> //IDamagable
 {
@@ -9,7 +10,7 @@ public class Player : Singleton<Player> //IDamagable
     public Animator animator;
 
     public CharacterController characterController;
-    public float speed =1f;
+    public float speed = 1f;
     public float turnSpeed = 1f;
 
     [Header("Gravity")]
@@ -28,6 +29,9 @@ public class Player : Singleton<Player> //IDamagable
     public HealthBase healthBase;
     public GameObject firstCheckpoint;
     //public UIGunUpdater uIGunUpdater;
+
+    [Space]
+    [SerializeField] private ClothChanger _clothChanger;
 
 
 
@@ -157,4 +161,31 @@ public class Player : Singleton<Player> //IDamagable
         }
     }
 
+
+    public void ChangeSpeed(float speed, float duration)
+    {
+        StartCoroutine(changeSpeedCourotine(speed,duration));
+    }
+
+    IEnumerator changeSpeedCourotine(float localSpeed, float duration)
+    {
+        var defaultSpeed = speed;
+        speed = localSpeed;
+        yield return new WaitForSeconds(duration);
+        speed = defaultSpeed;
+
+    }
+
+    public void ChangeTexture(ClothSetup setup, float duration)
+    {
+        StartCoroutine(changeTextureCourotine(setup, duration));
+    }
+
+    IEnumerator changeTextureCourotine(ClothSetup setup, float duration)
+    {
+        _clothChanger.ChangeTexture(setup);
+        yield return new WaitForSeconds(duration);
+        _clothChanger.ResetTexture();
+
+    }
 }
