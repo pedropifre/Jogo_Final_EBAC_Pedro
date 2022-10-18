@@ -30,6 +30,9 @@ public class Player : Singleton<Player> //IDamagable
     public GameObject firstCheckpoint;
     //public UIGunUpdater uIGunUpdater;
 
+
+    [SerializeField] private bool _jumping = false;
+
     [Space]
     [SerializeField] private ClothChanger _clothChanger;
 
@@ -103,22 +106,28 @@ public class Player : Singleton<Player> //IDamagable
 
         if (characterController.isGrounded)
         {
+            if (_jumping)
+            {
+                _jumping = false;
+                animator.SetTrigger("Land");
+            }
+
             vSpeed = 0;
             if (Input.GetKey(KeyCode.Space))
             {
                 vSpeed = jumpSpeed;
-                StartCoroutine(VFX_JUMP());
+
+                if (!_jumping)
+                {
+                    _jumping = true;
+                    animator.SetTrigger("Jump");
+                }
                 
             }    
 
         }
 
-        IEnumerator VFX_JUMP()
-        {
-            animator.SetBool("Jump", true);
-            yield return new WaitForSeconds(.5f);
-            animator.SetBool("Jump", false);
-        }
+        
 
         vSpeed -= gravity * Time.deltaTime;
         

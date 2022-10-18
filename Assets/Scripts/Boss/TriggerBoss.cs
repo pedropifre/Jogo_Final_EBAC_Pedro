@@ -37,8 +37,8 @@ namespace Boss
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.transform.tag == "Player")
-                boss.SwitchState(BossAction.IDLE);
+            //if (other.transform.tag == "Player")
+                //boss.SwitchState(BossAction.IDLE);
         }
     }
 
