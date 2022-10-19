@@ -68,7 +68,7 @@ public class SaveManager : Singleton<SaveManager>
 
     #endregion
     
-    public void SaveFile(string json)
+    private void SaveFile(string json)
     {
         
 
