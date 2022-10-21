@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckpointBase : MonoBehaviour
 {
@@ -11,13 +12,33 @@ public class CheckpointBase : MonoBehaviour
     private bool checkPointActivated= false;
     private string checkpointKey = "CheckPointKey";
 
+    public bool _lastCheckpoint = false;
+    public int nextLevelDex;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!checkPointActivated && other.transform.tag == "Player")
+        if (!checkPointActivated && other.transform.tag == "Player" && !_lastCheckpoint)
         {
             CheckCheckPoint();
         }
+        else if (!checkPointActivated && other.transform.tag == "Player" && _lastCheckpoint)
+        {
+            SaveManager.Instance.SaveLastLevel(nextLevelDex);
+            SaveManager.Instance.SaveItens();
+            StartCoroutine(LoadNextLevelDelay());
+        }
     }
+    IEnumerator LoadNextLevelDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        LoadNextLevel(2);
+    }
+
+    private void LoadNextLevel(int level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
 
     public void CheckCheckPoint()
     {

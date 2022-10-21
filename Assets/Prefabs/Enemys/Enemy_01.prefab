@@ -4957,12 +4957,16 @@ MonoBehaviour:
   collider: {fileID: 1664093531209980412}
   flashColor: {fileID: 3161241653509069093}
   particleSystem: {fileID: 1664093529956357448}
-  StartLife: 10
+  StartLife: 2
+  lookAtPlayer: 0
   _currentLife: 0
   _animationBase: {fileID: 1664093531209979905}
   startAnimationDuration: 0.2
   StartAnimationEase: 27
   startWithBornAnimation: 1
+  OnKillEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1664093531209979905
 MonoBehaviour:
   m_ObjectHideFlags: 0

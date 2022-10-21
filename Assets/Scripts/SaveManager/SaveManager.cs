@@ -12,7 +12,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public int lastLevel;
 
-    public Action<SaveSetup> FileLoaded;
+    public Action<SaveSetup> FileLoaded ;
     
 
     public SaveSetup Setup
@@ -35,7 +35,7 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Start()
     {
-        Invoke(nameof(Load),.1f);
+        Invoke(nameof(Load),.3f);
     }
 
 
@@ -57,6 +57,7 @@ public class SaveManager : Singleton<SaveManager>
     {
         _saveSetup.coins = Itens.ItemManager.Instance.GetByType(Itens.ItemType.COIN).soInt.value;
         _saveSetup.health = Itens.ItemManager.Instance.GetByType(Itens.ItemType.LIFE_PACK).soInt.value;
+        _saveSetup.texturePlayer = Player.Instance.ReturnTexture();
         Save();
     }
 
@@ -124,4 +125,5 @@ public class SaveSetup
     public float coins;
     public float health;
     public string playerName;
+    public Texture texturePlayer;
 }

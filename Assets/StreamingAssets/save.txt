@@ -1,6 +1,9 @@
 {
-    "lastLevel": 0,
+    "lastLevel": 1,
     "coins": 0.0,
     "health": 0.0,
-    "playerName": "Pedro"
+    "playerName": "Pedro",
+    "texturePlayer": {
+        "instanceID": 19766
+    }
 }

@@ -53,8 +53,13 @@ public class Player : Singleton<Player> //IDamagable
         healthBase.OnDamage += Damage;
         healthBase.OnKill += OnKill;
     }
-   
 
+    private void Start()
+    {
+        //fazer o personagem vestir a roupa salva aqui
+        _clothChanger.material.SetTexture("_EmissionMap", SaveManager.Instance.Setup.texturePlayer);
+
+    }
     #region LIFE
     private void OnKill(HealthBase h)
     {
@@ -185,6 +190,11 @@ public class Player : Singleton<Player> //IDamagable
 
     }
 
+    public Texture ReturnTexture()
+    {
+        Texture actualTexture = _clothChanger.texture;
+        return actualTexture;
+    }
     public void ChangeTexture(ClothSetup setup, float duration)
     {
         StartCoroutine(changeTextureCourotine(setup, duration));
@@ -193,6 +203,7 @@ public class Player : Singleton<Player> //IDamagable
     IEnumerator changeTextureCourotine(ClothSetup setup, float duration)
     {
         _clothChanger.ChangeTexture(setup);
+        _clothChanger.texture = setup.text;
         yield return new WaitForSeconds(duration);
         _clothChanger.ResetTexture();
 

@@ -14,14 +14,14 @@ namespace Cloth
         public string shaderIdName = "_EmissionMap";
 
         private Texture _defaultTexture;
+        public Material material;
 
         private void Awake()
         {
-            _defaultTexture = mesh.sharedMaterials[0].GetTexture(shaderIdName);
+            _defaultTexture = SaveManager.Instance.Setup.texturePlayer;
         }
 
-        
-
+      
         public void ChangeTexture(ClothSetup setup)
         {
             mesh.sharedMaterials[0].SetTexture(shaderIdName, setup.text);
