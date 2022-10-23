@@ -48,4 +48,6 @@ MonoBehaviour:
     coins: 2
     health: 3
     playerName: Pedro
+    texturePlayer: {fileID: 0}
   lastLevel: 0
+  mainTexture: {fileID: 2800000, guid: 8d0f7b33a4f3bf5459574270675b2718, type: 3}

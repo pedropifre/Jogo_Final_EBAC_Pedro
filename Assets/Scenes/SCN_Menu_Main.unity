@@ -2177,7 +2177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6648125479653085829, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_text
-      value: New Save
+      value: Load Save
       objectReference: {fileID: 0}
     - target: {fileID: 6648125479653085829, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_fontSize
@@ -2189,11 +2189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574955063100659100, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8574955063100659100, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8574955063100659100, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -2217,7 +2217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8574955063100659100, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveLastLevel
+      value: UppdateMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8574955063100659100, guid: d86d017c95c8e7a4ba3d5a9c857af8d5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName

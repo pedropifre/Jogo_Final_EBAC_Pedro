@@ -13,6 +13,7 @@ public class SaveManager : Singleton<SaveManager>
     public int lastLevel;
 
     public Action<SaveSetup> FileLoaded ;
+    public Texture mainTexture;
     
 
     public SaveSetup Setup
@@ -36,6 +37,7 @@ public class SaveManager : Singleton<SaveManager>
     private void Start()
     {
         Invoke(nameof(Load),.3f);
+        
     }
 
 
@@ -83,7 +85,10 @@ public class SaveManager : Singleton<SaveManager>
         File.WriteAllText(_path, json);
     }
 
-
+    public void UppdateMenu()
+    {
+        Load();
+    }
     [NaughtyAttributes.Button]
     private void Load()
     {
@@ -102,6 +107,11 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         FileLoaded.Invoke(_saveSetup);
+        if (_saveSetup.texturePlayer == null)
+        {
+            _saveSetup.texturePlayer = mainTexture;
+            Save();
+        }
     }
 
     [NaughtyAttributes.Button]
