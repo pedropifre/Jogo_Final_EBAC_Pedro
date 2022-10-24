@@ -14,12 +14,14 @@ public class CheckpointBase : MonoBehaviour
 
     public bool _lastCheckpoint = false;
     public int nextLevelDex;
+    public int checkPointNumber;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!checkPointActivated && other.transform.tag == "Player" && !_lastCheckpoint)
         {
             CheckCheckPoint();
+            SaveManager.Instance.SaveCheckpoint(checkPointNumber);
         }
         else if (!checkPointActivated && other.transform.tag == "Player" && _lastCheckpoint)
         {

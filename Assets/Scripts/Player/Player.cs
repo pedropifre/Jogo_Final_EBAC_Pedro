@@ -162,6 +162,11 @@ public class Player : Singleton<Player> //IDamagable
 
     }
 
+    public void SpawnPlayerCheckpoint(Transform checkTrans)
+    {
+        gameObject.transform.position = checkTrans.position;
+    }
+
     [NaughtyAttributes.Button]
     public void Respawn()
     {

@@ -14,6 +14,8 @@ public class SaveManager : Singleton<SaveManager>
 
     public Action<SaveSetup> FileLoaded ;
     public Texture mainTexture;
+
+    
     
 
     public SaveSetup Setup
@@ -47,7 +49,6 @@ public class SaveManager : Singleton<SaveManager>
     private void Save()
     {
         SaveSetup setup = new SaveSetup();
-        setup.lastLevel = 2;
         setup.playerName = "Pedro";
 
         string setupToJson = JsonUtility.ToJson(_saveSetup, true);
@@ -60,6 +61,13 @@ public class SaveManager : Singleton<SaveManager>
         _saveSetup.coins = Itens.ItemManager.Instance.GetByType(Itens.ItemType.COIN).soInt.value;
         _saveSetup.health = Itens.ItemManager.Instance.GetByType(Itens.ItemType.LIFE_PACK).soInt.value;
         _saveSetup.texturePlayer = Player.Instance.ReturnTexture();
+
+        Save();
+    }
+
+    public void SaveCheckpoint(int checkpointNumber)
+    {
+        _saveSetup.checkPoint = checkpointNumber;
         Save();
     }
 
@@ -112,7 +120,9 @@ public class SaveManager : Singleton<SaveManager>
             _saveSetup.texturePlayer = mainTexture;
             Save();
         }
+
     }
+ 
 
     [NaughtyAttributes.Button]
     private void SaveLevelOne()
@@ -136,4 +146,5 @@ public class SaveSetup
     public float health;
     public string playerName;
     public Texture texturePlayer;
+    public int checkPoint;
 }

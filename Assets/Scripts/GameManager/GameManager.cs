@@ -17,10 +17,12 @@ public class GameManager : Singleton<GameManager>
     }
 
     public StateMachine<GameStates> stateMachine;
+    public List<GameObject> checkPointList;
 
     private void Start()
     {
         Init();
+        InitGame();
     }
 
     public void Init()
@@ -39,6 +41,14 @@ public class GameManager : Singleton<GameManager>
 
     public void InitGame()
     {
-       
+        Debug.Log("init game");
+        foreach (var i in checkPointList)
+        {
+            if (i.GetComponent<CheckpointBase>().checkPointNumber == (int)SaveManager.Instance.Setup.checkPoint)
+            {
+                Player.Instance.SpawnPlayerCheckpoint(i.transform);
+            }
+        }
+        //SaveManager.Instance.SpawnPlayerCheckpoint();
     }
 }
