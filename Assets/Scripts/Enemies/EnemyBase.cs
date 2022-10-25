@@ -7,14 +7,15 @@ using UnityEngine.Events;
 
 namespace Enemy
 {
-    public class EnemyBase : MonoBehaviour,IDamagable
+    public class EnemyBase : MonoBehaviour, IDamagable
     {
         public Collider collider;
         public FlashColor flashColor;
         public ParticleSystem particleSystem;
         public float StartLife = 10f;
         public bool lookAtPlayer = false;
-
+        [Header("SFX")]
+        public SFXType sFXType;
 
         [SerializeField] private float _currentLife;
         private Player _player;
@@ -46,6 +47,10 @@ namespace Enemy
             _currentLife = StartLife;
         }
 
+        private void PlaySFX()
+        {
+            SFXPool.Instance.Play(sFXType);
+        }
         protected virtual void Init()
         {
             ResetLife();
@@ -63,6 +68,7 @@ namespace Enemy
         protected virtual void OnKill()
         {
             if (collider != null) collider.enabled = false;
+            PlaySFX();
             Destroy(gameObject,3f);
             PlayAnimationByTrigger(AnimationType.DEATH);
             OnKillEvent?.Invoke();
