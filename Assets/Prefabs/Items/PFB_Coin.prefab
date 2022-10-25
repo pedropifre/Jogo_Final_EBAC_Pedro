@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bbb36b1d256704db31a7ef009cefa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sFXType: 1
   itemType: 0
   audioSource: {fileID: 0}
   compareTag: Player

@@ -8,6 +8,7 @@ namespace Itens
     public class ItemCollactableBase : MonoBehaviour
     {
 
+        public SFXType sFXType;
         public ItemType itemType;
 
         [Header("Sounds")]
@@ -32,9 +33,14 @@ namespace Itens
             }
         }
 
+        private void PlaySFX()
+        {
+            SFXPool.Instance.Play(sFXType);
+        }
 
         protected virtual void Collect() 
         {
+            PlaySFX();
             if (ColliderItem != null) ColliderItem.enabled = false;
             OnCollect();
             if (graphicItem != null) graphicItem.SetActive(false);

@@ -4959,6 +4959,7 @@ MonoBehaviour:
   particleSystem: {fileID: 1664093529956357448}
   StartLife: 2
   lookAtPlayer: 0
+  sFXType: 3
   _currentLife: 0
   _animationBase: {fileID: 1664093531209979905}
   startAnimationDuration: 0.2
