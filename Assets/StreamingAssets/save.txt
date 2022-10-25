@@ -4,7 +4,7 @@
     "health": 0.0,
     "playerName": "Pedro",
     "texturePlayer": {
-        "instanceID": 19208
+        "instanceID": 18064
     },
     "checkPoint": 0
 }

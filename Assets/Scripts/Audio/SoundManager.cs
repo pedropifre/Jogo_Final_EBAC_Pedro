@@ -9,7 +9,7 @@ public class SoundManager : Singleton<SoundManager>
     public List<SFXSetup> sFXSetups;
 
     public AudioSource musicSource;
-    private bool _isPlaying=true;
+    [SerializeField]private bool _isPlaying=true;
 
     private void Update()
     {
@@ -21,6 +21,8 @@ public class SoundManager : Singleton<SoundManager>
         else if (Input.GetKeyDown(KeyCode.M) && !_isPlaying)
         {
             musicSource.Play();
+            _isPlaying = true;
+
         }
     }
     public void PlayMusicByType(MusicType musicType)

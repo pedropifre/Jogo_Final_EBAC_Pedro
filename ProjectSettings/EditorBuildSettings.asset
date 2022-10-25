@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SCN_Art_3D_v2.unity
     guid: 26656f4afa5e44b4abb40325f373ed83
-  - enabled: 1
-    path: Assets/Scenes/SCN_Art_3D.unity
-    guid: 10e5957b4b33c0b4e902e650fcc5edce
   m_configObjects: {}
